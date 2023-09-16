@@ -26,7 +26,10 @@ const Homescreens = () => {
   return (
     <ScrollView style={styles.container}>
       {!data && <ActivityIndicator/>}
-      {data && data.map((item,index)=>(
+      {data && data.map((item,index)=>{
+        const location=item.location.street.name;
+        const state=item.location.state;
+        return(
       <View key={index} style={styles.card}>
         <View style={styles.cardImg}>
           <Image style={styles.tinyLogo}
@@ -37,18 +40,18 @@ const Homescreens = () => {
         </View>
         <View style={styles.carddetails}>
             <View style={styles.cardflname}>
-                <Text>Lovely</Text>
-                <Text>Kumari</Text>
+                <Text>{item?.name?.first}</Text>
+                <Text>{item?.name?.last}</Text>
             </View>
             <View>
                 <Text>Gender: {item.gender}</Text>
-            </View>
-            <View>
+                <Text>Location: {location}</Text>
+                <Text>State: {state}</Text>
                 <Text>Phone: {item.cell}</Text>
             </View>
         </View>
       </View>
-      ))}
+      )})}
     </ScrollView>
     
   );
